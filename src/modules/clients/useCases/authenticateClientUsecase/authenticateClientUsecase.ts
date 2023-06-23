@@ -1,6 +1,6 @@
-import { prisma } from '../../../../database/prismaClient'
-import { compare } from 'bcrypt'
-import { sign } from 'jsonwebtoken'
+import { compare } from 'bcrypt';
+import { sign } from 'jsonwebtoken';
+import { prisma } from '../../../../database/prismaClient';
 import { AppError } from '../../../../errors/AppError';
 
 export interface IAuthenticateClient {

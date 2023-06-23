@@ -1,5 +1,5 @@
-import {prisma} from '../../../database/prismaClient'
-import { AppError } from '../../../errors/AppError';
+import {prisma} from '../../../../database/prismaClient'
+import { AppError } from '../../../../errors/AppError';
 import {hash} from 'bcrypt'
 
 interface ICreateDeliveryMan{

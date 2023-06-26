@@ -9,7 +9,8 @@ import ensureAuthenticateDeliveryMan from './middlewares/authenticaDeliveryman'
 import { FindAllDeliveriesWithoutEndDateController } from './modules/delivery/useCases/findAllDeliveriesWithoutEndDate/findAllDeliveriesWithoutEndDateController'
 import { UpdateDeliveryManController } from './modules/deliveryman/useCases/updateDeliveryManUseCase/updateDeliveryManController'
 import { FindClientDeliveriesController } from './modules/delivery/useCases/findClientDeliveriesUseCase/findClientDeliveriesController'
-import { FindAllDeliveriesController } from './modules/delivery/useCases/findAllDeliveriesUseCase/findAllDeliveriesController'
+import { FindAllDeliveriesByDeliverymanController } from './modules/delivery/useCases/findAllDeliveriesUseCase/findAllDeliveriesByDeliverymanController'
+import { FinishDeliveryController } from './modules/delivery/useCases/finishDeliveryUseCase/finishDeliveryCaontroller'
 
 
 const routes = Router()
@@ -22,7 +23,8 @@ const createDeliveryController = new CreateDeliveryController()
 const findAllDeliveriesWithoutEndDateController = new FindAllDeliveriesWithoutEndDateController()
 const updateDeliveryManController = new UpdateDeliveryManController()
 const findClientDeliveriesController = new FindClientDeliveriesController()
-const findAllDeliveriesController = new FindAllDeliveriesController()
+const findAllDeliveriesByDeliverymanController = new FindAllDeliveriesByDeliverymanController()
+const finishDeliveryController = new FinishDeliveryController()
 
 routes.post('/clients', createClientController.handle)
 routes.post('/clients', createClientController.handle)
@@ -40,7 +42,7 @@ routes.post('/deliveries', ensureAuthenticateClient, createDeliveryController.ha
 routes.get(
     '/deliveries/deliveryman/available',
     ensureAuthenticateDeliveryMan,
-    findAllDeliveriesController.handle
+    findAllDeliveriesByDeliverymanController.handle
 )
 routes.get(
     '/deliveries/client/available',
@@ -52,6 +54,8 @@ routes.get(
     ensureAuthenticateDeliveryMan,
     findAllDeliveriesWithoutEndDateController.handle
 )
+
+routes.put('/deliveries/finish/:id', ensureAuthenticateDeliveryMan, finishDeliveryController.handle)
 
 export { routes }
 

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
-import { FindAllDeliveriesUseCase } from './findAllDeliveriesUseCase'
+import { FindAllDeliveriesByDeliverymanUseCase } from './findAllDeliveriesByDeliverymanUseCase'
 
-export class FindAllDeliveriesController {
+export class FindAllDeliveriesByDeliverymanController {
     async handle(req: Request, res: Response): Promise<Response> {
         const { id_deliveryman } = req
-        const findAllDeliveriesUseCase = new FindAllDeliveriesUseCase()
+        const findAllDeliveriesUseCase = new FindAllDeliveriesByDeliverymanUseCase()
         const deliveries = await findAllDeliveriesUseCase.execute(id_deliveryman)
         return res.status(201).json(deliveries)
     }

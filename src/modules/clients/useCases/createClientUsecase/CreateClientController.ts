@@ -10,6 +10,6 @@ export class CreateClientController{
             password
         })
 
-        return res.status(201).json(result)
+        return res.status(201).json({result})
     }
 }

@@ -5,6 +5,7 @@ import { CreateDeliveryManController } from './modules/deliveryman/useCases/crea
 import { AuthenticateDeliveryManController } from './modules/deliveryman/useCases/authenticateDeliveryManUsecase/authenticateDeliveryManController'
 import { CreateDeliveryController } from './modules/delivery/useCases/createDelivery/CreateDeliveryController'
 import ensureAuthenticateClient from './middlewares/authenticateClient'
+import ensureAuthenticateDeliveryMan from './middlewares/authenticaDeliveryman'
 import { FindAllDeliveriesWithoutEndDateController } from './modules/delivery/useCases/findAllDeliveriesWithoutEndDate/findAllDeliveriesWithoutEndDateController'
 
 
@@ -23,7 +24,7 @@ routes.post('/clients/auth', authenticateClientController.handle)
 routes.post('/deliverymen', createDeliveryMan.handle)
 routes.post('/deliverymen/auth', authenticateDeliveryManController.handle)
 routes.post('/deliveries', ensureAuthenticateClient, createDeliveryController.handle)
-routes.get('/deliveries/available', findAllDeliveriesWithoutEndDateController.handle)
+routes.get('/deliveries/available', ensureAuthenticateDeliveryMan, findAllDeliveriesWithoutEndDateController.handle)
 
 export { routes }
 
